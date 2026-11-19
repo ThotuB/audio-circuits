@@ -1,0 +1,26 @@
+*=====================================================
+* 2-pin SPST switch with parameter control
+* Pins: T1 T2
+*=====================================================
+.SUBCKT SPST T1 T2 PARAMS: STATE=1
+
+.PARAM Ron=1m Roff=10Meg
+
+* Controlled resistors emulate switching
+R1 T1 T2 {if(STATE==1, Ron, Roff)}
+
+.ENDS SPST
+
+*=====================================================
+* 3-pin SPDT switch with parameter control
+* Pins: COM T1 T2
+*=====================================================
+.SUBCKT SPDT3 COM T1 T2 PARAMS: STATE=1
+
+.PARAM Ron=1m Roff=1Meg
+
+* Controlled resistors emulate switching
+R1 COM T1 {if(STATE==1, Ron, Roff)}
+R2 COM T2 {if(STATE==2, Ron, Roff)}
+
+.ENDS SPDT3

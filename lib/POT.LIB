@@ -1,0 +1,44 @@
+*-----
+* A-taper potentiometer (logarithmic)
+* Pins:
+*  A - 0 pin
+*  W - wiper
+*  B - 1 pin
+*
+* Parameters:
+*  Rtotal = total resistance
+*  alpha = wiper position (0 to 1)
+*  curve = steepness
+*  Rmin = minimum resistance
+*-----
+.SUBCKT POT_A A W B PARAMS: Rtotal = 10e3 alpha = 0.5 curve = 3 Rmin = 1m
+
+.param ratio = {(10 ** (curve * alpha) - 1) / (10 ** curve - 1)}
+
+R1 A W {Rmin + Rtotal * ratio}
+R2 W B {Rmin + Rtotal * (1 - ratio)}
+
+* debug ratio
+* Eratio 0 Nratio value={ratio}
+.ENDS POT_A
+
+*-----
+* B-taper potentiometer
+* Pins:
+*  A - 0 pin
+*  W - wiper
+*  B - 1 pin
+*
+* Parameters:
+*  Rtotal = total resistance
+*  alpha = wiper position (0 to 1)
+*  Rmin = minimum resistance
+*-----
+.SUBCKT POT_B A W B PARAMS: Rtotal = 10e3 alpha = 0.5 Rmin = 1m
+
+.param ratio = LIMIT(alpha, 1m, 1-1m)
+
+R1 A W {Rmin + Rtotal * ratio}
+R2 W B {Rmin + Rtotal * (1 - ratio)}
+
+.ENDS POT_B

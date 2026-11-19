@@ -2099,7 +2099,7 @@
 				(hide yes)
 			)
 		)
-		(property "Sim.Library" "/home/thotu/projects/kicad-libs/SW.LIB"
+		(property "Sim.Library" "${AUDIO_LIBS}/SW.LIB"
 			(at 114.3 100.33 0)
 			(effects
 				(font
@@ -3127,7 +3127,7 @@
 				(hide yes)
 			)
 		)
-		(property "Sim.Library" "/home/thotu/projects/kicad-libs/POT.LIB"
+		(property "Sim.Library" "${AUDIO_LIBS}/POT.LIB"
 			(at 147.32 88.9 0)
 			(effects
 				(font
